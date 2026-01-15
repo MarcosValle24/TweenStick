@@ -21,13 +21,12 @@ public class ProjectileScript : MonoBehaviour
         rb.AddRelativeForce(Vector3.forward );
     }
 
-    private void OnEnable()
-    {
-        
-    }
-
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            collision.transform.GetComponent<EnemyMovement>().GetHit(25);
+        }
         gameObject.SetActive(false);
     }
 }
