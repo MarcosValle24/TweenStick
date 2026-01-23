@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerLife : MonoBehaviour
 {
-    private float life = 100;
+    private float life = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,5 +18,7 @@ public class PlayerLife : MonoBehaviour
     public void ChangeLife(float change)
     {
         life += change;
+        print(life);
+        UIHandler.instance.UpdateHealthBar(life);
     }
 }
