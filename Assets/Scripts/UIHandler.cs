@@ -6,6 +6,7 @@ public class UIHandler : MonoBehaviour
     public static UIHandler instance;
     
     [SerializeField] Slider healthBar;
+    [SerializeField] Slider dashBar;
 
     void Awake()
     {
@@ -24,6 +25,14 @@ public class UIHandler : MonoBehaviour
         if (healthBar != null)
         {
             healthBar.value = health;
+        }
+    }
+
+    public void UpdateDashBar(float dash)
+    {
+        if (dashBar != null)
+        {
+            dashBar.value = dash;
         }
     }
 }
