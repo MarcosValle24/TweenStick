@@ -1,16 +1,18 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
 {
     public static UIHandler instance;
-    
+
     [SerializeField] Slider healthBar;
     [SerializeField] Slider dashBar;
+    [SerializeField] private TMP_Text scoreText;
 
     void Awake()
     {
-        if( instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -19,7 +21,7 @@ public class UIHandler : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+
     public void UpdateHealthBar(float health)
     {
         if (healthBar != null)
@@ -35,4 +37,18 @@ public class UIHandler : MonoBehaviour
             dashBar.value = dash;
         }
     }
+
+    public void StartGame()
+    {
+        
+    }
+
+    public void AddScore(string score)
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = score;
+        }
+    }
+
 }

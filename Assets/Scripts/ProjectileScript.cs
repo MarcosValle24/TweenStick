@@ -5,20 +5,35 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     private Rigidbody rb;
+    private float timer = 1;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         rb.useGravity = false;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.AddRelativeForce(Vector3.forward );
+        rb.AddRelativeForce(Vector3.forward * 25 );
+        if (timer > 0)
+        {
+            timer-=Time.deltaTime;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        timer = 1;
+        if(rb.linearVelocity.magnitude > 0.1f)
+            rb.linearVelocity = Vector3.zero;
     }
 
     void OnCollisionEnter(Collision collision)

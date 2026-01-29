@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -5,11 +6,14 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    [SerializeField] private Transform target;
+    NavMeshAgent agent;
+    [SerializeField] Transform target;
+    GameManager gameMananger;
 
-    private float life = 100;
-    private Coroutine attack =  null;
+    float life = 100;
+    Coroutine attack =  null;
+    
+    
 
 // Start is called once before the first execution of Update after the MonoBehaviour is created
    
@@ -18,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        gameMananger = GameObject.Find("Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -29,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
         if (life <= 0)
         {
             gameObject.SetActive(false);
+            gameMananger.UpdateScore();
         }
     }
 
@@ -42,6 +48,11 @@ public class EnemyMovement : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnDisable()
+    {
+        life = 100;
     }
 
     public void GetHit(float value)
