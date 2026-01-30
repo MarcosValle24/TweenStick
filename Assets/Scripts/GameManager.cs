@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
     int score;
     private GameObject player;
     [SerializeField] GameObject UIGame;
@@ -30,6 +31,8 @@ public class GameManager : MonoBehaviour
     void EndGame()
     {
         player.SetActive(false);
+        score = 0;
+        
     }
 
     public void UpdateScore()
