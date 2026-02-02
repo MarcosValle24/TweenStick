@@ -11,7 +11,10 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        if(player == null)
+            player = GameObject.Find("Player");
+        
+        player.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,10 +29,12 @@ public class GameManager : MonoBehaviour
         player.SetActive(true);
         UIMenu.SetActive(false);
         UIGame.SetActive(true);
+        gameObject.GetComponent<EnemyManager>().enabled = true;
     }
 
     void EndGame()
     {
+        gameObject.GetComponent<EnemyManager>().enabled = false;
         player.SetActive(false);
         score = 0;
         
