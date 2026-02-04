@@ -31,8 +31,7 @@ public class PlayerLife : MonoBehaviour
     {
         if (change < 0)
             TweenDamage();
-        life += change;
-        print(life);
+        life += change; ;
         UIHandler.instance.UpdateHealthBar(life);
     }
 
@@ -49,7 +48,6 @@ public class PlayerLife : MonoBehaviour
 
     void TweenDamage()
     {
-        print("hit");
         damageSequence.Play();
     }
 }
