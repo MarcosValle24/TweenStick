@@ -1,12 +1,24 @@
+using System;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerLife : MonoBehaviour
 {
     private float life = 1;
+
+    [SerializeField] private MeshRenderer body;
+    Sequence damageSequence;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         
+        damageSequence = DOTween.Sequence();
+        damageSequence.Append(body.material.DOColor(Color.red, 0.3f)).AppendCallback(() => body.material.DOColor(Color.white, 0.3f)).AppendCallback(()=>damageSequence.Rewind());
+        //damageSequence.Rewind();
+    }
+
+    void Start()
+    {
     }
 
     // Update is called once per frame
@@ -17,8 +29,27 @@ public class PlayerLife : MonoBehaviour
 
     public void ChangeLife(float change)
     {
+        if (change < 0)
+            TweenDamage();
         life += change;
         print(life);
         UIHandler.instance.UpdateHealthBar(life);
+    }
+
+    public void RestartLife()
+    {
+        life = 1;
+        UIHandler.instance.UpdateHealthBar(life);
+    }
+
+    public float GetLife()
+    {
+        return life;
+    }
+
+    void TweenDamage()
+    {
+        print("hit");
+        damageSequence.Play();
     }
 }

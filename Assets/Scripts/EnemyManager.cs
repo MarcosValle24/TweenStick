@@ -40,6 +40,14 @@ public class EnemyManager : MonoBehaviour
         temp.transform.position = spawnpoints[value].position;
         temp.SetActive(true);
     }
+
+    public void ClearEnemies()
+    {
+        foreach (var e in enemies)
+        {
+            e.SetActive(false);
+        }
+    }
     
     GameObject GetEnemy()
     {
