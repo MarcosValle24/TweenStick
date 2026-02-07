@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 direction = new Vector3(correctedPoint.x,0, correctedPoint.z);
             direction = direction.normalized;
-            playerMove.Move(transform.forward * 4);
+            playerMove.Move(transform.forward * 6);
             dashingTime= 0;
             UIHandler.instance.UpdateDashBar(dashingTime);
             CharacterAim();

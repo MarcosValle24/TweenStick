@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PlayerShoot : MonoBehaviour
 {
     public InputAction Shoot;
+    int maxBullets = 25;
+    
     [SerializeField] private GameObject bulletclone;
     [SerializeField] Transform gunpoint;
     
@@ -35,7 +37,7 @@ public class PlayerShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Shoot.triggered)
+        if (Shoot.triggered && maxBullets > 0)
         {
             GameObject newBullet = GetBullet();
             if (newBullet != null)
@@ -44,7 +46,7 @@ public class PlayerShoot : MonoBehaviour
                 newBullet.transform.position = gunpoint.position;
                 newBullet.transform.rotation = gunpoint.rotation;
             }
-                
+                maxBullets--;
         }
     }
 
@@ -56,5 +58,15 @@ public class PlayerShoot : MonoBehaviour
                 return b;
         }
         return null;
+    }
+
+    void RestartBullets()
+    {
+        maxBullets = 25;
+    }
+
+    void AddBullets(int amount)
+    {
+        maxBullets += amount;
     }
 }

@@ -9,6 +9,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField] Slider healthBar;
     [SerializeField] Slider dashBar;
     [SerializeField] private TMP_Text scoreText;
+    [SerializeField] private TMP_Text timerText;
+
 
     void Awake()
     {
@@ -38,11 +40,6 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        
-    }
-
     public void AddScore(string score)
     {
         if (scoreText != null)
@@ -51,4 +48,14 @@ public class UIHandler : MonoBehaviour
         }
     }
 
+    public void UpdateTimerText(float s)
+    {
+        if (timerText != null)
+        {
+            float minutes = Mathf.Floor(s / 60);
+            float seconds = Mathf.Floor(s % 60);
+            timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
+
+    }
 }
