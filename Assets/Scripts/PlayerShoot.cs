@@ -47,6 +47,7 @@ public class PlayerShoot : MonoBehaviour
                 newBullet.transform.rotation = gunpoint.rotation;
             }
                 maxBullets--;
+                UIHandler.instance.UpdateBulletText(maxBullets.ToString());
         }
     }
 
@@ -60,13 +61,14 @@ public class PlayerShoot : MonoBehaviour
         return null;
     }
 
-    void RestartBullets()
+    public void RestartBullets()
     {
         maxBullets = 25;
     }
 
-    void AddBullets(int amount)
+    public void AddBullets(int amount)
     {
         maxBullets += amount;
+        UIHandler.instance.UpdateBulletText(maxBullets.ToString());
     }
 }

@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         isPlaying = true;
         MaxTime = 180f;
         player.GetComponent<PlayerLife>().RestartLife();
+        player.GetComponent<PlayerShoot>().RestartBullets();
         score = 0;
         UIHandler.instance.AddScore(score.ToString());
         player.SetActive(true);
@@ -59,6 +60,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void AddTime(int t)
+    {
+        this.MaxTime+=t;
+    }
+    
     public void UpdateScore()
     {
         score++;

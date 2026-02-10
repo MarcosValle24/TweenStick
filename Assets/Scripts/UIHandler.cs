@@ -10,6 +10,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] Slider dashBar;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text bulletText;
 
 
     void Awake()
@@ -56,6 +57,13 @@ public class UIHandler : MonoBehaviour
             float seconds = Mathf.Floor(s % 60);
             timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
         }
+    }
 
+    public void UpdateBulletText(string bullet)
+    {
+        if (bulletText != null)
+        {
+            bulletText.text = bullet;
+        }
     }
 }
