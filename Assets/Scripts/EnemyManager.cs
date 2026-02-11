@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
 
     List<GameObject> enemies = new List<GameObject>();
 
-    private float maxTime = 5;
+    private float maxTime = 3;
     private float time = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,7 +58,10 @@ public class EnemyManager : MonoBehaviour
                 return clone;
             }
         }
-        return null;
+        GameObject c = Instantiate(enemybase);
+        c.SetActive(false);
+        enemies.Add(c);
+        return c;
     }
 
 }

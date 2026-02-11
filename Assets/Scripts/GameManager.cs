@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
         isPlaying = false;  
         gameObject.GetComponent<EnemyManager>().ClearEnemies();
         gameObject.GetComponent<EnemyManager>().enabled = false;
+        gameObject.GetComponent<PickUpManager>().ClearPickups();
         player.SetActive(false);
         UIGame.SetActive(false);
         UIMenu.SetActive(true);

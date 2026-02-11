@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = System.Random;
 
 
 public class EnemyMovement : MonoBehaviour
@@ -42,22 +41,19 @@ public class EnemyMovement : MonoBehaviour
 
     void SetSpawn()
     {
-        int value = 0;
+        float value = Random.Range(0, 100);
         //float value =  Random.Range(0, 100);
-        if (value > 15)
+        if (value <20)
         {
-            GameObject temp = Instantiate(pickup, transform.position, transform.rotation);
-            temp.GetComponent<PickUpItem>().type = type.time;
+           gameMananger.gameObject.GetComponent<PickUpManager>().ReturnPickup(transform.position,type.health);
         }
-        else if (value > 25)
+        else if (value < 30)
         {
-            GameObject temp = Instantiate(pickup, transform.position, transform.rotation);
-            temp.GetComponent<PickUpItem>().type = type.health;
+            gameMananger.gameObject.GetComponent<PickUpManager>().ReturnPickup(transform.position,type.time);
         }
         else
         {
-            GameObject temp = Instantiate(pickup,transform.position,transform.rotation);
-            temp.GetComponent<PickUpItem>().type = type.Ammo;
+            gameMananger.gameObject.GetComponent<PickUpManager>().ReturnPickup(transform.position,type.Ammo);
         }
     }
 

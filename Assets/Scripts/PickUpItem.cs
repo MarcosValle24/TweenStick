@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum type {Ammo, health, time}
@@ -30,5 +31,21 @@ public class PickUpItem : MonoBehaviour
             showTime = 25;
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnEnable()
+    {
+        if (type == type.Ammo)
+        {
+            GetComponent<MeshRenderer>().material.color = Color.green;
+        }
+        else if (type == type.health)
+            {
+            GetComponent<MeshRenderer>().material.color = Color.red;
+            }
+        else if (type == type.time)
+            {
+            GetComponent<MeshRenderer>().material.color = Color.blue;
+            }
     }
 }
