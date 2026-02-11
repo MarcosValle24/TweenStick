@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = System.Random;
 
 
 public class EnemyMovement : MonoBehaviour
@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     NavMeshAgent agent;
     [SerializeField] Transform target;
     GameManager gameMananger;
+    [SerializeField] private GameObject pickup;
 
     float life = 100;
     Coroutine attack =  null;
@@ -35,6 +36,28 @@ public class EnemyMovement : MonoBehaviour
         {
             gameObject.SetActive(false);
             gameMananger.UpdateScore();
+            SetSpawn();
+        }
+    }
+
+    void SetSpawn()
+    {
+        int value = 0;
+        //float value =  Random.Range(0, 100);
+        if (value > 15)
+        {
+            GameObject temp = Instantiate(pickup, transform.position, transform.rotation);
+            temp.GetComponent<PickUpItem>().type = type.time;
+        }
+        else if (value > 25)
+        {
+            GameObject temp = Instantiate(pickup, transform.position, transform.rotation);
+            temp.GetComponent<PickUpItem>().type = type.health;
+        }
+        else
+        {
+            GameObject temp = Instantiate(pickup,transform.position,transform.rotation);
+            temp.GetComponent<PickUpItem>().type = type.Ammo;
         }
     }
 
@@ -53,6 +76,7 @@ public class EnemyMovement : MonoBehaviour
     private void OnDisable()
     {
         life = 100;
+        
     }
 
     public void GetHit(float value)
