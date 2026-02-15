@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
     {
         float value = Random.Range(0, 100);
         //float value =  Random.Range(0, 100);
-        if (value <20)
+        if (value <10)
         {
            gameMananger.gameObject.GetComponent<PickUpManager>().ReturnPickup(transform.position,type.health);
         }
@@ -91,7 +91,7 @@ public class EnemyMovement : MonoBehaviour
                 col.transform.GetComponent<PlayerLife>().ChangeLife(-.25f);
             }
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         attack = null;
 
     }
