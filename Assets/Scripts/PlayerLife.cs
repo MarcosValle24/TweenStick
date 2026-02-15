@@ -37,8 +37,19 @@ public class PlayerLife : MonoBehaviour
     public void ChangeLife(float change)
     {
         if (change < 0)
+        {
             TweenDamage();
-        life += change; ;
+            life += change;
+        }
+        else
+        {
+            if(life < 1)
+                life += change;
+            else 
+            {
+                life = 1;
+            }
+        }
         UIHandler.instance.UpdateHealthBar(life);
     }
 
