@@ -72,7 +72,9 @@ public class EnemyMovement : MonoBehaviour
     private void OnDisable()
     {
         life = 100;
-        
+        StopAllCoroutines();
+        attack = null;
+
     }
 
     public void GetHit(float value)

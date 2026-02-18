@@ -64,6 +64,7 @@ public class PlayerShoot : MonoBehaviour
     public void RestartBullets()
     {
         maxBullets = 25;
+        UIHandler.instance.UpdateBulletText(maxBullets.ToString());
     }
 
     public void AddBullets(int amount)
